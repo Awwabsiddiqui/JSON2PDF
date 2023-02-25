@@ -13,8 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,7 +26,7 @@ public class MyController {
 	@GetMapping("/")
 	public String[] homepage() {
 		String[] arr = new String[] { "http://localhost:8080", "http://localhost:8080/json2pdf",
-				"http://localhost:8080/json2pdf?fileName=" , "http://localhost:8080/download?fileName=" };
+				"http://localhost:8080/json2pdf?fileName=", "http://localhost:8080/download?fileName=" };
 		return arr;
 	}
 
@@ -50,7 +48,8 @@ public class MyController {
 
 	private static final String EXTENSION = ".pdf";
 
-	@RequestMapping(path = "/download", method = RequestMethod.GET)
+//	@RequestMapping(path = "/download", method = RequestMethod.GET)
+	@GetMapping("/download")
 	public ResponseEntity<ByteArrayResource> download(@RequestParam("fileName") String fileName) throws IOException {
 		File file = new File(fileName + EXTENSION);
 
